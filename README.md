@@ -35,7 +35,7 @@ Kurulum sonrası bilgisayarınızı yeniden başlattığınızda GRUB menüsünd
 Bu repodaki `Ro-Kernel-S.config` dosyasını Fedora Kernel `.spec` dosyasıyla birleştirerek kendi COPR deponuza gönderebilirsiniz:
 1. Fedora'nın SRPM kernel paketini indirin.
 2. İçerisindeki standart `.config` dosyasını bu repodaki `Ro-Kernel-S.config` ile değiştirin.
-3. COPR platformunda "Custom Build" veya "SCM" (GitHub) webhook ile bağlayarak otomatik derlenmesini sağlayın.
+3. COPR platformunda "Custom Build" veya "SCM" ile derlenmesini sağlayın.
 
 ---
 
