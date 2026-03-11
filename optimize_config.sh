@@ -1,14 +1,14 @@
 #!/bin/bash
 # ro-Kernel-Desktop (Experimental) Config Optimizer Script
 
-KERNEL_DIR="/home/smurat/Masaüstü/ro-Kernel-Experimental/linux-7.0-rc2"
+KERNEL_DIR="/home/smurat/Masaüstü/ro-Kernel-Experimental/linux-7.0-rc3"
 REPO_DIR="/home/smurat/Masaüstü/ro-Kernel-Experimental/ro-Kernel-Experimental"
-BASE_CONFIG="/boot/config-7.0.0-0.rc2.21.fc45.x86_64"
+BASE_CONFIG="$REPO_DIR/Ro-Kernel-S.config"
 
 echo "Kernel dizinine geçiliyor: $KERNEL_DIR"
 cd "$KERNEL_DIR" || exit 1
 
-echo "Temel config alınıyor (Fedora 7.0 rc2): $BASE_CONFIG"
+echo "Temel config alınıyor (mevcut Ro-Kernel-S rc2 tabanlı): $BASE_CONFIG"
 cp "$BASE_CONFIG" .config
 
 echo "Local version ayarlaniyor..."
