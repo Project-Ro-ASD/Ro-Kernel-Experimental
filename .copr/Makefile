@@ -6,7 +6,7 @@ srpm:
 	rpmdev-setuptree
 
 	# Fedora rawhide kernel SRPM'ini Koji'den indir
-	cd /tmp && koji download-build --arch=src kernel-7.0.0-0.rc2.21.fc45
+	cd /tmp && koji download-build --arch=src kernel-7.0.0-0.rc3.28.fc45
 
 	# SRPM'i aç
 	rpm -ivh /tmp/kernel-*.src.rpm
