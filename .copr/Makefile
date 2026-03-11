@@ -9,12 +9,14 @@ srpm:
 	cd /tmp && git clone https://src.fedoraproject.org/rpms/kernel.git fedora-kernel
 	cd /tmp/fedora-kernel && git checkout 6a58a88925a0740eda0e53cc40e971a8806d8b90
 
-	# Kaynak dosyaları (tarball vb.) indir
-	cd /tmp/fedora-kernel && spectool -g -C $$(rpm --eval '%{_sourcedir}') kernel.spec
+	# Tarball'ı Fedora lookaside cache'ten indir (spectool bunu yapamaz)
+	cd /tmp/fedora-kernel && fedpkg sources
 
-	# Spec ve patches dosyalarını SOURCES dizinine kopyala
-	cp /tmp/fedora-kernel/*.config $$(rpm --eval '%{_sourcedir}')/
-	cp /tmp/fedora-kernel/*.patch $$(rpm --eval '%{_sourcedir}')/ 2>/dev/null || true
+	# dist-git'teki TÜM dosyaları SOURCES dizinine kopyala
+	# (scriptler, sertifikalar, yaml, config, patch vb. hepsi)
+	find /tmp/fedora-kernel -maxdepth 1 -type f ! -name '*.spec' ! -name 'sources' ! -name '.gitignore' -exec cp {} $$(rpm --eval '%{_sourcedir}')/ \;
+
+	# Spec dosyasını kopyala
 	cp /tmp/fedora-kernel/kernel.spec $$(rpm --eval '%{_specdir}')/
 
 	# Bizim config dosyamızı x86_64 config olarak kopyala (üzerine yaz)
