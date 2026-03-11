@@ -18,7 +18,7 @@ srpm:
 	cp /tmp/fedora-kernel/kernel.spec $$(rpm --eval '%{_specdir}')/
 
 	# Bizim config dosyamızı x86_64 config olarak kopyala (üzerine yaz)
-	cp $(spec_srcdir)/Ro-Kernel-Experimental.config $$(rpm --eval '%{_sourcedir}')/kernel-x86_64-fedora.config
+	cp $(spec)/Ro-Kernel-Experimental.config $$(rpm --eval '%{_sourcedir}')/kernel-x86_64-fedora.config
 
 	# spec dosyasında buildid'yi ayarla
 	sed -i 's/# define buildid .local/%define buildid .Ro_Kernel_Experimental/' $$(rpm --eval '%{_specdir}')/kernel.spec
