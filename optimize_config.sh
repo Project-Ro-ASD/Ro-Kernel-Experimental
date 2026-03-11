@@ -3,16 +3,16 @@
 
 KERNEL_DIR="/home/smurat/Masaüstü/ro-Kernel-Experimental/linux-7.0-rc3"
 REPO_DIR="/home/smurat/Masaüstü/ro-Kernel-Experimental/ro-Kernel-Experimental"
-BASE_CONFIG="$REPO_DIR/Ro-Kernel-S.config"
+BASE_CONFIG="$REPO_DIR/Ro-Kernel-Experimental.config"
 
 echo "Kernel dizinine geçiliyor: $KERNEL_DIR"
 cd "$KERNEL_DIR" || exit 1
 
-echo "Temel config alınıyor (mevcut Ro-Kernel-S rc2 tabanlı): $BASE_CONFIG"
+echo "Temel config alınıyor (mevcut Ro-Kernel-Experimental tabanlı): $BASE_CONFIG"
 cp "$BASE_CONFIG" .config
 
 echo "Local version ayarlaniyor..."
-./scripts/config --set-str LOCALVERSION "-Ro-Kernel-S"
+./scripts/config --set-str LOCALVERSION "-Ro-Kernel-Experimental"
 
 echo "Gereksiz eski protokoller kapatılıyor..."
 ./scripts/config --disable CONFIG_HAMRADIO
@@ -59,6 +59,6 @@ echo "make olddefconfig çalıştırılarak bağımlılıklar kontrol ediliyor..
 make olddefconfig
 
 echo "Hazırlanan config dosyası repoya kopyalanıyor..."
-cp .config "$REPO_DIR/Ro-Kernel-S.config"
+cp .config "$REPO_DIR/Ro-Kernel-Experimental.config"
 
 echo "İşlem tamam!"

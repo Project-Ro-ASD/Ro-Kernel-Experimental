@@ -29,12 +29,12 @@ Eğer RPM dosyalarını (örn. `kernel-*.rpm`, `kernel-headers-*.rpm`, `kernel-d
 ```bash
 sudo dnf install ./*.rpm
 ```
-Kurulum sonrası bilgisayarınızı yeniden başlattığınızda GRUB menüsünde **-Ro-Kernel-S** kernelini görebilirsiniz.
+Kurulum sonrası bilgisayarınızı yeniden başlattığınızda GRUB menüsünde **-Ro-Kernel-Experimental** kernelini görebilirsiniz.
 
 ### 🇹🇷 COPR İçin Derleme Hazırlığı (COPR Build Preparation)
-Bu repodaki `Ro-Kernel-S.config` dosyasını Fedora Kernel `.spec` dosyasıyla birleştirerek kendi COPR deponuza gönderebilirsiniz:
+Bu repodaki `Ro-Kernel-Experimental.config` dosyasını Fedora Kernel `.spec` dosyasıyla birleştirerek kendi COPR deponuza gönderebilirsiniz:
 1. Fedora'nın SRPM kernel paketini indirin.
-2. İçerisindeki standart `.config` dosyasını bu repodaki `Ro-Kernel-S.config` ile değiştirin.
+2. İçerisindeki standart `.config` dosyasını bu repodaki `Ro-Kernel-Experimental.config` ile değiştirin.
 3. COPR platformunda "Custom Build" veya "SCM" ile derlenmesini sağlayın.
 
 ---
@@ -44,10 +44,10 @@ If you have built or downloaded the RPM files (e.g., `kernel-*.rpm`, `kernel-hea
 ```bash
 sudo dnf install ./*.rpm
 ```
-Upon reboot, you should see the **-Ro-Kernel-S** kernel in your GRUB menu.
+Upon reboot, you should see the **-Ro-Kernel-Experimental** kernel in your GRUB menu.
 
 ### 🇬🇧 COPR Build Preparation
-You can use the `Ro-Kernel-S.config` file from this repository to build your custom kernel on Fedora COPR:
+You can use the `Ro-Kernel-Experimental.config` file from this repository to build your custom kernel on Fedora COPR:
 1. Download a Fedora Kernel SRPM.
-2. Replace the standard `.config` with `Ro-Kernel-S.config` provided here.
+2. Replace the standard `.config` with `Ro-Kernel-Experimental.config` provided here.
 3. Push everything to your COPR repo or link this GitHub repository as an SCM source for automated builds.

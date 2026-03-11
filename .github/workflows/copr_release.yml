@@ -27,8 +27,8 @@ jobs:
           mkdir -p /tmp/rpms
           cd /tmp/rpms
           
-          # DİKKAT: COPR deponuzun yolunu aşağıya tam olarak girin: (örneğin: smurat/Ro-Kernel-S)
-          COPR_REPO="smurat/Ro-Kernel-S"
+          # DİKKAT: COPR deponuzun yolunu aşağıya tam olarak girin:
+          COPR_REPO="minitheguitarist/Ro-Kernel-Experimental"
           
           echo "Enabling COPR repostiory: $COPR_REPO"
           dnf copr enable -y "$COPR_REPO"
@@ -42,8 +42,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: /tmp/rpms/*.rpm
-          tag_name: "v7.0-Ro-Kernel-S-${{ github.run_number }}"
-          name: "Ro-Kernel-S Build #${{ github.run_number }}"
+          tag_name: "v7.0-Ro-Kernel-Experimental-${{ github.run_number }}"
+          name: "Ro-Kernel-Experimental Build #${{ github.run_number }}"
           body: "Automated RPM release pulled from Fedora COPR repository."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
