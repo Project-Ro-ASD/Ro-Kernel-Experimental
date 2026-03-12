@@ -23,7 +23,7 @@ srpm:
 	cp $(spec)/Ro-Kernel-Experimental.config $$(rpm --eval '%{_sourcedir}')/kernel-x86_64-fedora.config
 
 	# spec dosyasında buildid'yi ayarla
-	sed -i 's/# define buildid .local/%define buildid .Ro_Kernel_Experimental/' $$(rpm --eval '%{_specdir}')/kernel.spec
+	sed -i 's/# define buildid .local/%define buildid .RoASD/' $$(rpm --eval '%{_specdir}')/kernel.spec
 
 	# SRPM oluştur (Sadece base kernel, tools'a dokunmadık, sed komutlarını siktir ettik)
 	rpmbuild -bs $$(rpm --eval '%{_specdir}')/kernel.spec \
