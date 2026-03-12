@@ -25,31 +25,16 @@ srpm:
 	# spec dosyasında buildid'yi ayarla
 	sed -i 's/# define buildid .local/%define buildid .Ro_Kernel_Experimental/' $$(rpm --eval '%{_specdir}')/kernel.spec
 
-	# COPR, --without parametrelerini mock build'e aktarmıyor.
-	# Bu yüzden spec dosyasına doğrudan müdahale ediyoruz:
-	# Sadece base kernel derlensin (debug, perf, tools vb. kapatılıyor)
-	sed -i 's/^%define with_debug.*/%define with_debug 0/' $$(rpm --eval '%{_specdir}')/kernel.spec
-	sed -i 's/^%define with_debuginfo.*/%define with_debuginfo 0/' $$(rpm --eval '%{_specdir}')/kernel.spec
-	sed -i 's/^%define with_perf.*/%define with_perf 0/' $$(rpm --eval '%{_specdir}')/kernel.spec
-	sed -i 's/^%define with_tools.*/%define with_tools 0/' $$(rpm --eval '%{_specdir}')/kernel.spec
-	sed -i 's/^%define with_bpftool.*/%define with_bpftool 0/' $$(rpm --eval '%{_specdir}')/kernel.spec
-	sed -i 's/^%define with_cross_headers.*/%define with_cross_headers 0/' $$(rpm --eval '%{_specdir}')/kernel.spec
-	sed -i 's/^%define with_ipaclones.*/%define with_ipaclones 0/' $$(rpm --eval '%{_specdir}')/kernel.spec
-	sed -i 's/^%define with_efiuki.*/%define with_efiuki 0/' $$(rpm --eval '%{_specdir}')/kernel.spec
-	sed -i 's/^%define with_baseonly.*/%define with_baseonly 1/' $$(rpm --eval '%{_specdir}')/kernel.spec
-
-	# SRPM oluştur (sadece base kernel, debug ve extras olmadan)
+	# SRPM oluştur (Sadece base kernel, tools'a dokunmadık, sed komutlarını siktir ettik)
 	rpmbuild -bs $$(rpm --eval '%{_specdir}')/kernel.spec \
 		--define "_srcrpmdir $(outdir)" \
 		--define "fedora 43" \
 		--define "dist .fc43" \
 		--without debug \
 		--without debuginfo \
-		--with baseonly \
 		--without doc \
 		--without perf \
-		--without tools \
-		--without bpftool \
 		--without cross_headers \
 		--without ipaclones \
-		--without efiuki
+		--without efiuki \
+		--with baseonly
