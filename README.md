@@ -1,53 +1,63 @@
-# ro-Kernel-Desktop (Experimental)
+# Ro-Kernel-Experimental
 
-*🇹🇷 Türkçe:*
-Bu depo, Linux 7.0-rc3 çekirdeğini (kernel) alıp sadece son kullanıcı masaüstü cihazları için en verimli hale getirmeyi amaçlayan bir optimizasyon projesidir. Fedora 43 alt yapısı (Kernel 7.0-rc3) üzerinde kurulu bu yapılandırmada; modern ve "legacy" masaüstü bilgisayarlara yönelik destekler korunmuşken, gereksiz görülen eski donanım ve protokoller tamamen kaldırılmıştır.
+## 🇬🇧 English
 
-**Ana Hedefler:**
-*   Sadece Masaüstü: Sunucu bileşenlerinden ziyade hızlı masaüstü deneyimi.
-*   Gereksiz Yüklerden Kurtulma: 1999 ve öncesinde kalan çok eski ekran kartları, amatör bant telsiz sürücüleri, kullanılmayan eski ağ cihazları ve iletişim protokolleri modüllerden çıkartılmıştır.
-*   Legacy Sistemlere Destek: Çekirdek olabildiğince hafifletilmiş olsa da, eski BIOS'a (Legacy Boot) sahip bilgisayarlarda da masaüstünün sorunsuz açılması için gereken temel IDE/SATA ve USB denetleyici desteklerini korur.
-*   Yerel ve COPR Derlemesi: Çekirdek yerel (local) ortamda test edildikten sonra Fedora'nın COPR platformu için de otomatik olarak derlenebilir bir paket şablonu (RPM) şeklinde planlanmıştır.
+### Why Ro-Kernel-Experimental exists?
+This repository contains an experimental kernel optimization project based on Linux 7.0-rc3, specifically designed for Fedora 43. The primary goal is to provide a snappy, streamlined desktop experience for end-users. By stripping away unnecessary server-related components, obsolete hardware drivers (from before 1999), and dormant network protocols, the kernel is made significantly lighter. 
 
----
+Despite the aggressive slimming, it maintains essential support for both modern and "legacy" desktop setups (including IDE/SATA and USB controllers required for Legacy BIOS) to ensure compatibility across a wide range of desktop hardware.
 
-**🇬🇧 English:**
-This repository is an experimental optimization project aimed at taking the Linux 7.0-rc3 kernel and streamlining it strictly for end-user desktop machines. Based on the Fedora 43 (Kernel 7.0-rc3) infrastructure, this configuration maintains support for both modern and "legacy" desktop scenarios, while entirely removing obsolete hardware and network protocols.
-
-**Core Objectives:**
-*   Desktop-Only Focus: A snappy desktop experience, discarding unnecessary server features.
-*   Bloat Removal: Extremely old graphics cards from 1999 and earlier, amateur radio drivers, obsolete network devices, and outdated protocols have been removed from the modules.
-*   Legacy System Support: Despite being slimmed down, the kernel retains the foundational IDE/SATA and USB controller support required to boot successfully on older PCs utilizing Legacy BIOS setups.
-*   Local and COPR Build Pipeline: The configuration is designed to be built initially as a local RPM package for hardware testing, and subsequently deployed via Fedora's COPR build system.
+### Build Status
+This kernel is automatically compiled and hosted on **Fedora COPR**.
 
 ---
 
-## 🛠️ Build & Installation / Derleme & Kurulum
+## 🇹🇷 Türkçe
 
-### 🇹🇷 Yerel Kurulum (Local Installation)
-Eğer RPM dosyalarını (örn. `kernel-*.rpm`, `kernel-headers-*.rpm`, `kernel-devel-*.rpm`) derlediyseniz veya indirdiyseniz, Fedora üzerinde şu komutla kurabilirsiniz:
-```bash
-sudo dnf install ./*.rpm
-```
-Kurulum sonrası bilgisayarınızı yeniden başlattığınızda GRUB menüsünde **-Ro-Kernel-Experimental** kernelini görebilirsiniz.
+### Ro-Kernel-Experimental Nedir?
+Bu depo, Fedora 43 tabanlı Linux 7.0-rc3 çekirdeği üzerine kurgulanmış deneysel bir optimizasyon projesidir. Temel amacı, son kullanıcılar için en hızlı ve verimli masaüstü deneyimini sunmaktır. Sunucu odaklı bileşenler, 1999 öncesi eski donanım sürücüleri ve kullanılmayan ağ protokolleri temizlenerek çekirdek ciddi oranda hafifletilmiştir.
 
-### 🇹🇷 COPR İçin Derleme Hazırlığı (COPR Build Preparation)
-Bu repodaki `Ro-Kernel-Experimental.config` dosyasını Fedora Kernel `.spec` dosyasıyla birleştirerek kendi COPR deponuza gönderebilirsiniz:
-1. Fedora'nın SRPM kernel paketini indirin.
-2. İçerisindeki standart `.config` dosyasını bu repodaki `Ro-Kernel-Experimental.config` ile değiştirin.
-3. COPR platformunda "Custom Build" veya "SCM" ile derlenmesini sağlayın.
+Çekirdek hafifletilirken; modern sistemlerin yanı sıra "Legacy" (Eski) BIOS sistemlerin de sorunsuz açılabilmesi için gerekli olan temel IDE/SATA ve USB denetleyici desteği korunmuştur.
+
+### Derleme Bilgisi
+Bu çekirdek, **Fedora COPR** platformu üzerinde otomatik olarak derlenmekte ve barındırılmaktadır.
 
 ---
 
-### 🇬🇧 Local Installation
-If you have built or downloaded the RPM files (e.g., `kernel-*.rpm`, `kernel-headers-*.rpm`, `kernel-devel-*.rpm`), you can install them on Fedora using:
-```bash
-sudo dnf install ./*.rpm
-```
-Upon reboot, you should see the **-Ro-Kernel-Experimental** kernel in your GRUB menu.
+## 🚀 Installation Guide / Kurulum Rehberi (Fedora 43)
 
-### 🇬🇧 COPR Build Preparation
-You can use the `Ro-Kernel-Experimental.config` file from this repository to build your custom kernel on Fedora COPR:
-1. Download a Fedora Kernel SRPM.
-2. Replace the standard `.config` with `Ro-Kernel-Experimental.config` provided here.
-3. Push everything to your COPR repo or link this GitHub repository as an SCM source for automated builds.
+### 🇬🇧 English: How to install from COPR
+You can easily install the kernel on your Fedora 43 system using the following steps:
+
+1. **Enable the COPR repository:**
+   ```bash
+   sudo dnf copr enable minitheguitarist/Ro-Kernel-Experimental
+   ```
+
+2. **Update and Install the Kernel:**
+   ```bash
+   sudo dnf update
+   sudo dnf install kernel kernel-devel kernel-headers
+   ```
+
+3. **Reboot:**
+   After the installation is complete, reboot your computer. You should see the **-RoASD** version in your GRUB menu.
+
+---
+
+### 🇹🇷 Türkçe: COPR üzerinden nasıl kurulur?
+Fedora 43 sisteminize bu çekirdeği aşağıdaki adımları izleyerek kolayca kurabilirsiniz:
+
+1. **COPR deposunu etkinleştirin:**
+   ```bash
+   sudo dnf copr enable minitheguitarist/Ro-Kernel-Experimental
+   ```
+
+2. **Sistemi Güncelleyin ve Kerneli Kurun:**
+   ```bash
+   sudo dnf update
+   sudo dnf install kernel kernel-devel kernel-headers
+   ```
+
+3. **Yeniden Başlatın:**
+   Kurulum tamamlandıktan sonra bilgisayarınızı yeniden başlatın. GRUB menüsünde **-RoASD** takısını içeren çekirdek sürümünü göreceksiniz.
