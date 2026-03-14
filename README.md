@@ -61,3 +61,7 @@ Fedora 43 sisteminize bu çekirdeği aşağıdaki adımları izleyerek kolayca k
 
 3. **Yeniden Başlatın:**
    Kurulum tamamlandıktan sonra bilgisayarınızı yeniden başlatın. GRUB menüsünde **-RoASD** takısını içeren çekirdek sürümünü göreceksiniz.
+
+
+
+**Ro-Main testi yapıldı**
